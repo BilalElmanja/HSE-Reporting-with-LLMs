@@ -91,11 +91,3 @@ This project is licensed under [MIT License](LICENSE).
 ![License](path/to/license_image.png)
 
 ---
-
-### Notes for Including Images in README:
-
-- Replace `path/to/image.png` with the actual paths to your images. If the images are hosted online, use the full URL.
-- Ensure the images are relevant and add value to the content. They could be diagrams, screenshots, or other visuals that help explain the system or its components.
-- Make sure the images are properly sized and optimized for the web to ensure the README loads quickly and efficiently.
-
-Including images will make your README more engaging and informative, helping users better understand your project.
