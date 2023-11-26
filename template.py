@@ -9,6 +9,8 @@ def create_project_structure(base_path):
         'integration',
         'security',
         'error_handling',
+        'models',
+        'adapters',
         'ui'
     ]
 
@@ -21,7 +23,9 @@ def create_project_structure(base_path):
         'integration': ['__init__.py', 'external_api.py'],
         'security': ['__init__.py', 'encryption.py'],
         'error_handling': ['__init__.py', 'logger.py'],
-        'ui': ['__init__.py', 'interface.py']
+        'ui': ['__init__.py', 'interface.py'],
+        'models': ['__init__.py', 'models.py'],
+        'adapters': ['__init__.py', 'adapters.py'],
     }
 
     for directory in directories:
