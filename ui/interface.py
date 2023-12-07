@@ -8,7 +8,7 @@ from langchain.prompts import PromptTemplate
 # local_llm = "../zephyr-7b-beta.Q4_0.gguf" # download the model from this link https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF/tree/main
 # Assuming the model is downloaded and stored in a known directory
 model_dir = os.path.join(os.path.dirname(__file__), '..', 'models')
-local_llm = os.path.join(model_dir, "zephyr11111-7b-beta.Q4_0.gguf")
+local_llm = os.path.join(model_dir, "llama-2-13b-chat.Q4_0.gguf")
 
 config = {
     'max_new_tokens': 128,
@@ -90,7 +90,7 @@ async def setup_agent(settings):
 
     llm_init = CTransformers(
         model=local_llm,
-        model_type="mistral",
+        model_type="llama",
         lib="avx2",  # 'avx2' or 'avx512'
         **config
     )
