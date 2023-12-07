@@ -746,7 +746,503 @@
       {
         "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
         "Question": "How is feedback from safety audits actioned and implemented?"
-      }
+      },
+      {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety concerns integrated into the design of new workspaces?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What procedures are in place for the safe use of hazardous substances?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is the effectiveness of first aid and emergency response evaluated?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What safety measures are in place for staff working in isolated areas?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are potential risks from electrical equipment managed?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What strategies are used to minimize risks in high-traffic areas?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are staff informed about changes in safety protocols?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What measures are taken to ensure the safety of visiting clients or customers?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety considerations handled during organizational changes?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What are the main challenges in maintaining a consistent safety culture?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are employees trained to handle safety equipment properly?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the specific safety protocols for the storage of flammable materials?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is workplace safety managed during large-scale events or projects?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What processes are in place for regular safety equipment inspections?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are employees involved in identifying and mitigating safety risks?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the guidelines for responding to hazardous material spills?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is the safety of temporary structures or installations ensured?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What safety considerations are in place for employees working remotely?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety measures enforced in areas with limited supervision?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is safety performance tracked and measured over time?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "Can you describe a successful initiative that improved workplace safety?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What recent changes have been made to improve emergency preparedness?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is safety integrated into employee training and development programs?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What are the plans for enhancing safety communication across the organization?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are innovative safety practices shared across different departments?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What challenges are anticipated in maintaining safety with business growth?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are external safety trends and research incorporated into internal practices?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What role does leadership play in fostering a culture of safety?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are new technologies assessed for safety impacts before implementation?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What are the protocols for safety in areas with extreme environmental conditions?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are contractors and temporary workers briefed on safety protocols?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What measures are in place for ensuring safe vehicle operations within premises?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is the safety of new and experimental work processes ensured?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What safety protocols are specific to certain types of machinery or equipment?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is the safety of mobile and field workers managed?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the emergency procedures in place for hazardous weather conditions?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety protocols adapted for multicultural and diverse workforces?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What are the biggest successes in improving workplace safety recently?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How do safety practices adapt to changes in workforce dynamics?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What future trends in workplace safety are currently being explored?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is feedback from safety audits actioned and implemented?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What are the key focus areas in the current safety training programs?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is the safety of night and shift workers specifically addressed?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What is the standard procedure for reporting safety hazards in the workplace?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are workplace safety standards adapted for seasonal variations?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What measures are taken to ensure safety in high-occupancy areas?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are changes in legal safety regulations incorporated into practices?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What initiatives are in place to promote a culture of safety awareness?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is safety managed for employees working in confined spaces?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What are the safety protocols for areas with potential air quality issues?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are employees informed and trained on new safety equipment?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What specific safety challenges are associated with handling toxic materials?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are risks assessed for tasks involving heavy lifting or physical strain?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What protocols are in place for emergency evacuation in multi-story buildings?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is employee safety ensured during maintenance or repair work?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What measures are in place to prevent accidents in areas prone to wet or slippery surfaces?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety inspections tailored for areas with sensitive or critical equipment?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the emergency response protocols for chemical spills or leaks?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is safety maintained during the transportation of goods within the facility?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the specific safety protocols for working with high voltage equipment?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are past safety incidents analyzed to prevent future occurrences?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What advancements in safety equipment have been adopted recently?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are safety protocols updated in response to employee feedback?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What ongoing measures are in place for continuous safety improvement?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How does the organization handle safety challenges unique to its industry?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What role do safety audits play in shaping long-term safety strategies?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is technology being utilized to enhance employee safety training?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What challenges are faced in implementing widespread safety changes?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are new industry safety standards integrated into the organization?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What is the process for revisiting and updating safety policies?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is workplace safety communicated to non-English speaking employees?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What safety measures are in place for outdoor or field-based work?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is the physical safety of employees ensured in customer interaction zones?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What procedures are in place for safely handling electronic waste?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are workplace safety concerns addressed in a diverse work environment?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the safety considerations for employees working at significant heights?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is the safety of employees ensured during organizational restructuring?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What specific safety measures are in place for laboratory or research areas?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety risks mitigated in areas with frequent equipment updates?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is feedback from safety training sessions utilized to improve practices?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What are the key factors in maintaining a safe working environment during expansion?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are emerging safety technologies evaluated for implementation?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What measures are in place to ensure mental health safety in the workplace?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety procedures adapted for different facility layouts?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What is the protocol for handling safety incidents involving visitors or clients?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are emergency exits and evacuation routes maintained and communicated?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What steps are taken to ensure compliance with industry-specific safety standards?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How is safety training personalized for employees in various roles?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What ongoing assessments are made to identify new workplace safety risks?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety measures enforced in areas with limited direct supervision?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What protocols are in place for the safe handling of emerging technologies?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety practices modified in response to environmental concerns?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What challenges are faced in maintaining safety standards during rapid growth?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What specific measures are taken to prevent workplace accidents in high-risk areas?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is equipment safety verified in critical operational areas?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the specific safety protocols for handling biohazardous materials?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are employees trained to manage safety in remote or off-site locations?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the safety considerations for employees working in extreme temperatures?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is the safety of newly installed machinery or equipment evaluated?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What protocols are in place for reporting and responding to near-miss incidents?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety standards maintained in shared or co-working spaces?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What measures are taken to ensure the safety of temporary or seasonal workers?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is the success of safety initiatives measured and evaluated?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "Can you share a case where employee feedback led to a significant safety improvement?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What challenges have been encountered in implementing cross-departmental safety initiatives?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How does the organization adapt to changing safety regulations in its industry?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What future plans are in place to further enhance workplace safety?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How is new safety technology evaluated and integrated into existing practices?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What steps are taken to maintain and improve mental health safety in the workplace?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How do you foresee the evolution of workplace safety in the next five years?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What impact have recent safety initiatives had on overall employee wellbeing?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety concerns addressed in the design of new products or services?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What are the protocols for safety in areas with frequent customer interaction?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are employees educated about the environmental aspects of workplace safety?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "What safety considerations are taken for employees traveling for work?"
+  },
+  {
+    "Phase": "Phase 1: General Questions (Overview)",
+    "Question": "How are safety protocols managed in multi-lingual or diverse work environments?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What specific safety measures are in place for handling explosive or flammable materials?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How are safety practices enforced in areas prone to natural disasters?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "What are the protocols for managing safety in highly automated workspaces?"
+  },
+  {
+    "Phase": "Phase 2: Specific Questions (Detail Oriented)",
+    "Question": "How is workplace safety managed during large-scale construction or renovation projects?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How have safety policies evolved in response to technological advancements?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What are the main barriers to implementing new safety measures?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "How are safety protocols adjusted in response to global health events or pandemics?"
+  },
+  {
+    "Phase": "Phase 3: Follow-up Questions (In-depth and Reflective)",
+    "Question": "What innovative approaches are being explored to enhance safety training?"
+  }
 
   ]
   

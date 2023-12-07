@@ -6,3 +6,14 @@ langchain
 openai
 ipykernel
 ctransformers
+langchain
+huggingface_hub
+tiktoken
+chromadb
+PyPDF2
+pypdf
+sentence_transformers
+together
+FlagEmbedding
+pydantic==1.10.9
+InstructorEmbedding
