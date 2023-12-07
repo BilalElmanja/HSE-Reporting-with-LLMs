@@ -17,3 +17,5 @@ together
 FlagEmbedding
 pydantic==1.10.9
 InstructorEmbedding
+pdfplumber
+pillow
