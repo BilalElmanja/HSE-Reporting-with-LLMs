@@ -11,10 +11,15 @@ from langchain.chains import RetrievalQA
 from typing import Any, Dict, List, Mapping, Optional
 from pydantic import Extra, Field, root_validator
 from langchain.utils import get_from_dict_or_env
+import re
+
 import replicate
+import pdfplumber
+import time
 from datetime import datetime
 
 os.environ["REPLICATE_API_KEY"] = "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m"
+
 
 
 class LLM_model(LLM):
@@ -58,7 +63,7 @@ class LLM_model(LLM):
                     "temperature": 0.01,
                     "prompt": prompt,
                     "system_prompt": "",
-                    "max_new_tokens": 128,
+                    "max_new_tokens": 512,
                     "min_new_tokens": -1
             }
             
@@ -113,11 +118,13 @@ class Document_Chain:
         docs = []
         for loader in loaders:
             docs.extend(loader.load())
+
+        print(f"Loaded {len(docs)} documents")
         return docs
 
     def retriever_big_chunks(self, docs):
-        parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000)
-        child_splitter = RecursiveCharacterTextSplitter(chunk_size=400)
+        parent_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+        child_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
         vectorstore = Chroma(collection_name="split_parents", embedding_function=self.bge_embeddings)
         store = InMemoryStore()
 
@@ -139,7 +146,8 @@ class Document_Chain:
                     "top_p": 1,
                     "temperature": 0.01,
                     "system_prompt": "",
-                    "max_new_tokens": 128,
+
+                    "max_new_tokens": 512,
                     "min_new_tokens": -1
                 },
         self.model_name = "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
@@ -177,35 +185,87 @@ class ConversationMemory:
 
 
 
-        
-    
+
+def convert_pdf_to_text(pdf_file_path, text_file_path=None):
+    # Determine the output text file path
+    directory, pdf_filename = os.path.split(pdf_file_path)
+    base_filename = os.path.splitext(pdf_filename)[0]
+    text_file_path = os.path.join("./documents", f"{base_filename}.txt")
+
+    # Open the PDF and extract text
+    with pdfplumber.open(pdf_file_path) as pdf, open(text_file_path, 'w', encoding='utf-8') as text_file:
+        for page in pdf.pages:
+            text = page.extract_text()
+            if text:
+                text_file.write(text + "\n")
+
+    return text_file_path
+
+
+
+def clean_text_file(file_path):
+    # Define a regular expression pattern for allowed characters (English and French)
+    pattern = re.compile(r"[a-zA-Z0-9\séàèùâêîôûçëïüÉÀÈÙÂÊÎÔÛÇËÏÜ.,!?'\-]")
+
+    # Read the file
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+
+    # Filter out unwanted characters
+    filtered_content = ''.join(pattern.findall(content))
+
+    # Write the cleaned content back to the file or to a new file
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write(filtered_content)
+
+    return file_path
 
 
 import chainlit as cl
 
-chain =  Document_Chain()
+chain = Document_Chain()
 conversation_memory = ConversationMemory(base_directory='./documents')
 
 @cl.on_chat_start
 async def on_chat_start():
+    # Example usage
     
-    chain.initilize_chain("./documents", "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m")
+    pdf_directory = "./documents_pdf"
+    txt_directory = "./documents"
+
+    
+    for filename in os.listdir(pdf_directory):
+        if filename.endswith(".pdf"):
+            pass
+            #pdf_file_path = os.path.join(pdf_directory, filename)
+            #text_file_path = convert_pdf_to_text(pdf_file_path, )
+            #print(f"Converted {filename} to {text_file_path}")
+    
+    for filename in os.listdir(txt_directory):
+        if filename.endswith(".txt"):
+            pass
+            #txt_file_path = os.path.join(txt_directory, filename)
+            #clean_text_file(txt_file_path)
+            #print(f"Cleaned {filename}")
+
+    
+    #chain.initilize_chain("./documents", "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m")
     # Usage
     
-    conversation_memory.start_new_conversation()
-
-
+    #conversation_memory.start_new_conversation()
 
 
 @cl.on_message
 async def on_message( message: cl.Message):
    
     user_input = message.content
-    msg = cl.Message(content="")
-    response = chain.chain.invoke(user_input)
-    for text in response['result']:
-        await msg.stream_token(text)
-        time.sleep(0.01)
+    user_files = message.elements
+    print(user_files[0].path)
+    msg = cl.Message(content="done")
+    #response = chain.chain.invoke(user_input)
+    #for text in response['result']:
+        #await msg.stream_token(text)
+        #time.sleep(0.01)
 
 
 

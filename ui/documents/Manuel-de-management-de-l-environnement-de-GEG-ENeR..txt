@@ -1,0 +1,383 @@
+Manuel
+de management
+de lenvironnement
+GEG Energies Nouvelles et Renouvelables
+GEG Energies Nouvelles et Renouvelables
+17 rue de la Frise
+38000 GRENOBLE
+Tél. 04 76 22 41 38
+1
+Version V7 du 2122015
+Sommaire
+Préambule
+Activité de GEG ENeR
+périmètre de certification du SME
+SME  Système de Management
+Environnemental
+Politique environnementale
+
+Organisation
+
+Principe damélioration continue
+
+Planification
+
+Mise en uvre
+
+Contrôle
+
+Suivi  Revue de direction Environnement
+
+2
+Version V7 du 2122015
+Préambule
+Objectifs du manuel
+Ce manuel décrit le système de management de lenvironnement SME
+mis en place par GEG ENeR et répondant à la norme ISO 14001 2004.
+Ce dernier a pour objectifs 
+ De présenter le SME mis en place et appliqué par GEG ENeR.
+ Dindiquer les différents documents et outils relatifs au SME.
+ De montrer aux parties intéressées que GEG ENeR a mis en
+place un système damélioration continue ayant pour but daméliorer
+ses performances environnementales.
+Diffusion du manuel
+Ce manuel est diffusé en interne à GEG et ouvert aux parties
+intéressées externes.
+3
+Version V7 du 2122015
+Activité de GEG ENeR
+Périmètre de certification du SME
+Activité de lentreprise
+GEG ENeR, Filiale de Gaz Electricité de Grenoble Source dEnergies
+a pour activité de produire de lélectricité issue dénergies
+renouvelables centrales hydroélectriques , photovoltaïques ,
+éoliennes 
+Activités et prestations faisant lobjet de la
+certification ISO 14 001
+ La production d'électricité des centrales hydroélectriques
+suivantes
+Doron à Pralognan La Vanoise 73
+
+Glière à Pralognan La Vanoise 73
+
+Le Ferrand à Mizoën 38
+
+Montsapey 73
+
+Saint Barthelemy de Séchilienne 38
+
+Vaulnaveys le haut 38
+
+Montgirod 73
+
+4
+Version V7 du 2122015
+Politique environnementale
+Développement durable
+Résolument engagée dans une logique de développement durable, notre entreprise a fait le choix des énergies
+respectueuses des territoires et du patrimoine naturel. La certification environnementale ISO 14001 nous permet
+dafficher notre volonté dêtre une entreprise citoyenne et de maîtriser les impacts environnementaux qui
+résultent de nos systèmes de production dénergie.
+Cest pourquoi nous menons des actions afin de 
+ Pérenniser et développer notre parc de production décentralisée en énergies renouvelables  hydroélectricité,
+photovoltaïque, éolien 
+ Développer les ventes de ces énergies ainsi que les prestations déconomiedénergie
+ Diminuer lempreinte environnementalede lentreprise existence depuis 2008 dunAgenda 21
+Maîtrise environnementale de nos sites de production hydraulique
+ Exploiter nos sites de façon à satisfaire aux exigences environnementales, des clients, de GEG, des lois et
+réglementations.
+ Réduire les temps darrêt des centrales de manière à injecter sur le réseau le maximum dénergie renouvelable
+permettant de limiter lépuisement des ressources fossiles.
+ Minimiser lexposition aux risques concernant lenvironnement, la santé et la sécurité de nos employés et des
+parties intéressées riverains, administrations, associations, .
+ Eliminerles déchets en recourant à des méthodes responsables et sûres.
+ Instaurer des mesures de prévention des pollutions et disposersur tous nos sites de plans dintervention durgence.
+Amélioration continue
+Nous prenons lengagement de fonder la gestion de nos activités dans un système damélioration continue qui
+bénéficieà tous.
+ Je massurerai personnellement de la mise en uvre et du suivi de cette politique, dans un objectif
+damélioration continue de notre performance environnementale. Cette politique marque notre engagement dans
+la préservation de lenvironnement qui est notre patrimoine commun. 
+Christine GOCHARD, Directrice Générale de GEG Energies nouvelles et renouvelables
+5
+Version V7 du 2122015
+Organisation du SME 
+ressources, rôles, responsabilité et autorité
+Pilotage de lentreprise et gestion de lamélioration continue
+Comité Exécutif de GEG ENeR  pilotage et revue de
+Auditeurs
+direction.
+DIRECTION
+Le RE est chargé de la définition et du suivi global du
+Système de Management de lEnvironnement
+RESPONSABLE
+Responsable du département QSE.
+ENVIRONNEMENT RE
+Animation, gestion et mise en uvre du
+Système de Management Environnemental
+RESPONSABLE OPERATIONNEL
+Responsable du Département Exploitation
+ENVIRONNEMENT REOp
+Ouvrages de Production.
+Intervenant au sein des centrales,
+ils appliquent au quotidien les
+INTERVENANTS OPERATIONNELS
+règles définies dans le SME. Ils
+sont internes à GEG ENeR ou
+prestataires externes.
+PARTIES PRENANTES
+6
+Version V7 du 2122015
+Principe damélioration continue
+Structure du SME
+Le système de management de
+lenvironnement est basé sur la roue de
+Deming permettant une amélioration
+continue de GEG ENeR en matière de
+performances environnementales
+Documentation
+La documentation du SME est
+maîtrisée et complètement intégrée à la
+norme ISO14001.
+7
+Version V7 du 2122015
+Planification 
+Aspects Environnementaux Significatifs
+AES  Aspects Environnementaux Significatifs
+En 2006, un état des lieux environnemental complet a été réalisé dans les centrales aujourdhui
+certifiées 14001. Il a pu être effectué à laide dune procédure didentification et de quantification des aspects
+environnementaux et des impacts associés ainsi quà laide dune évaluation de la sensibilité
+environnementale des différents sites GEG1-104-301.
+En étudiant la gravité de ces impacts et la fréquence à laquelle ils ont lieu, un degré de criticité leur est
+attribué permettant ainsi de les classer en fonction de leurs effets sur lenvironnement. Ceux ayant une
+ criticité  supérieure à un seuil préalablement défini sont alors qualifiés comme étant significatifs  AES.
+En fonction du niveau de maîtrise qua GEG ENeR sur ces AES et de leur criticité, on détermine un
+risque résiduel pour chacun deux. Aussi, en fonction de la politique environnementale, un degré dimportance
+leur est attribué. En combinant ces deux critères, on obtient alors un degré de priorité daction pour chacun
+desAES, permettant ainsi de fixer des objectifs environnementaux pour les plus critiques dentre eux.
+Cette analyse environnementale est revue en cas de modifications importantes des activités ou après
+retour dexpérience.
+ Liste des principaux AES 
+1. Pollution des eaux et des sols  rejets dhuile, production de déchets
+2. Dégradation du paysage  intégration des bâtiments
+3. Faune et milieu aquatique  respect des débits réservés
+4. Pollution atmosphérique  déplacements
+5. Gêne du voisinage  bruit
+6. Epuisement des ressources naturelles  arrêts des centrales
+8
+Version V7 du 2122015
+Planification 
+Objectifs et Cibles
+Objectifs et cibles environnementaux
+ Objectif  but environnemental fixé par GEG ENeR.
+ Cible  exigence de performance fixée et devant être réalisée afin datteindre lobjectif.
+Les objectifs et cibles sont définis chaque année lors de la revue de direction environnementale en fonction des
+Aspects Environnementaux Significatifs identifiés, de la politique environnementale de GEG ENeR et des exigences
+légales. Ces objectifs et cibles sont aussi définis en fonction de critères technologiques et financiers de GEG ENeR.
+ Liste des principaux Objectifs et cibles 
+AES Objectifs Cibles
+Maîtriser les risques de pollutions. Avoir 0 rejet dhydrocarbure
+Utiliser des matériaux à faible impact
+Pollution des eaux et des sols environnemental isolation p.e..
+Eliminer les déchets par des moyens Suivre 100 des déchets sur toutes les
+responsables et sûrs centrales
+Intégrer au mieux les centrales dans leur Toutes les centrales et les prises deau sont
+Dégradation des paysages
+lenvironnement intégrées et maintenues.
+Respecter 100 des débits réservés
+Faune et milieu aquatique Respecterles débits réservés
+Ne recevoir aucun PV.
+Réduire nos GES et émissions de Limiter les déplacements et consommer le
+Pollution atmosphérique
+particules liés à nos déplacements moins possible
+Emergence globale inférieure à 
+Respecter la réglementation en vigueur
+Gêne du voisinage - 5 dBA de jour 7h à 22h
+en matière de Bruit
+- 3 dBA de nuit
+Epuisement des ressources
+Limiter les arrêts des centrales -Disponibilité des centrales à 95
+naturelles
+9
+Version V7 du 2122015
+Planification 
+Veille réglementaire et Conformité
+Veille réglementaire
+Un état des lieux complet des textes de lois applicables à GEG ENeR et à son périmètre dactivité a été
+réalisé en matière denvironnement. La méthodologie mise en uvre pour assurer ce contrôle est décrite
+dans la procédure de veille réglementaire environnement de la production de GEG ENeR  GEG1-104-239
+stockée dans la GED.
+GEG ENeR assure en permanence la conformité de ses activités sur son périmètre en mettant à jour la
+liste des nouveaux textes réglementaires et légaux lui étant imputables, ainsi quun résumé de ces différents
+textes. La procédure permet aussi lidentification et laccès aux exigences locales  nouveaux arrêtés
+municipaux au niveau des sites de production ou des activités de GEG ENeR 
+Exemple  élimination des appareils contenant des PCB avant le 31122010 Directive 9659CE de
+1996, transposée en droit français via le décret n2001-63 du 18012001
+Conformité
+La vérification de la conformité réglementaire et normative est faite annuellement et le principe est décrit
+dans la procédure GEG1-104-237.
+Un bilan est présenté en Revue de Direction Environnement.
+Exemple  vérification périodique réglementaire des installations électriques, moyens de lutte contre
+lincendie 
+10
+Version V7 du 2122015
+Mise en uvre 
+Plan dAction Environnemental
+PAE  Plan dActions Environnementales
+Le PAE reprend et liste les différentes actions à réaliser afin daméliorer les performances
+environnementales de GEG ENeR.
+Les actions du PAE sont 
+ Des actions visant à réduire le risque résiduel des AES, à répondre aux objectifs et cibles,
+ Des actions correctives liées aux non conformités réglementaires, aux différents écarts identifiés, aux
+disfonctionnements
+ Des actions provenant dune démarche volontaire de GEG ENeR,
+ Des actions nécessaires au bon fonctionnement du SME revue des documents,
+ Des actions liées à la Prévention  Sécurité du travail
+Pour chaque action référencée, il est précisé la priorité de laction, le responsable, le délai, les moyens
+à mettre en uvre et enfin létat davancement de laction.
+De plus, pour chacune de ces actions, des modalités dévaluation de leur efficacité sont indiquées, avec un
+responsable, un délai, un état davancement et une preuve de cette efficacité.
+11
+Version V7 du 2122015
+Mise en uvre 
+compétence, formation et sensibilisation
+Compétence et formation
+ GEG ENeR a mis en place un plan de formation visant à assurer la compétence de chaque membre de
+son personnel. Il existe des formations garantissant ladaptation des salariés à leur poste de travail liées à
+lévolution ou au maintien dans lemploi  et des formations ayant pour but le développement des
+compétences des salariés.
+ Certaines de ces formations peuvent découler dactions du PAE  elles peuvent être des actions visant à
+atteindre un objectif fixé lors de la revue de direction environnementale, comme par exemple en 2010 avec la
+mise en place dune formation à léco-conduite pour diminuer la consommation annuelle en carburant.
+Sensibilisation
+ GEG ENeR propose un guide de sensibilisation du personnel à la démarche 14001
+avec une explication détaillée du système de management de lenvironnement.
+ GEG ENeR est intégré dans la démarche Agenda 21 de GEG et dispose de divers
+outils pour sensibiliser son personnel au respect de lenvironnement  DVD et livres de
+sensibilisation disponibles dans une médiathèque interne, panneaux daffichage,
+évènements annuels 
+ Un manuel des actions pour lenvironnement est fourni en annexe des plans de
+prévention permettant aux intervenants extérieurs de prendre en compte les diverses
+recommandations environnementales à appliquer lors de tous travaux sur les centrales.
+12
+Version V7 du 2122015
+Mise en uvre 
+documentation
+Manuel environnemental décrivant le système de management de
+lenvironnement de GEG ENeR.
+Organisationnel
+Manuel
+Procédure donnant la marche à suivre pour le bon
+fonctionnement du SME  procédure didentification des
+Procédures AES, procédure dexigences légales
+organisationnelles
+Documents décrivant les modes opératoires des
+différentes tâches  classeur dexploitation,
+Documents opératoires procédure durgence
+procédures, instructions,
+Enregistrements  indicateurs, comptes
+- rendus de visites de prévention, de
+Enregistrements
+revues de direction, daudits 
+Opérationnel
+ Une Gestion des Documents GEG1-106-237 a été mise en place pour assurer une bonne maîtrise documentaire
+ validation, archivage, protection
+ Un classeur dexploitation informatisé est accessible sur chaque ordinateur portable. Chaque agent
+dexploitation accède ainsi à lensemble des documents de type opérationnel  modes opératoires, procédures
+opérationnelles
+13
+Version V7 du 2122015
+Mise en uvre 
+préparation et réponse aux situations durgence
+Situations durgence
+Les activités de GEG ENeR ne présentent pas de
+risques majeurs pour lenvironnement. Les seuls
+évènements pouvant engendrer dimportants dégâts ou
+pollutions sont les incendies dans les centrales. GEG
+ENeR a donc mis en place une procédure durgence dans
+le cas où cet évènement se produirait, procédure présente
+dans le classeur dexploitation  GEG1-104-302 
+PROMR30005.
+Evaluation de lefficacité des procédures
+ Un test defficacité des procédures durgence a été fait en 2013.
+14
+Version V7 du 2122015
+Contrôle 
+surveillance et mesurage
+Indicateurs
+Les impacts environnementaux mesurables liés aux activités de GEG ENeR sont suivis grâce à divers
+indicateurs suivi des quantités de déchets produits, suivi des quantités de produits consommés, suivi de la
+consommation dhydrocarbures, disponibilité des centrales, enregistrés dans le tableau de bord de
+surveillance et mesurage.
+Le suivi de ces indicateurs permet didentifier les éventuels écarts ou dysfonctionnements par rapport aux
+objectifs environnementaux et donc de mieux gérer les différentes actions dans le PAE.
+Objectifs Cible Indicateur
+Avoir 0 rejet dhydrocarbure
+Non utilisation de la procédure
+Utiliser des matériaux à faible impact
+durgence
+Pollution des eaux et des sols  environnemental isolation p. e.
+Suivi de consommation des
+Maîtriser les risques de pollution
+hydrocarbures
+Suivre 100 des déchets sur toutes
+Suivi de quantité de déchets produits
+les centrales
+Dégradation des paysages  Propreté de la prise deau et de la
+Toutes les centrales et les prises
+Intégrer au mieux les centrales dans centrale fiche de passage  visite de
+deau sont intégrées et maintenues.
+leur lenvironnement prévention environnementale
+Faune et milieu aquatique  Respecter 100 des débits réservés Suivi des débits réservé
+Respecter les débits réservés Ne recevoir aucun PV. Suivi des PV
+Mesure annuelle des dB en limite de
+Gène du voisinage  Emergence globale inférieure à 
+propriété 2012
+Respecter la réglementation en - 5 dBA de jour 7h à 22h
+Contrôle externe si nécessaire et pour
+vigueur en matière de bruit - 3 dBA de nuit
+tout nouvel ouvrage.
+Epuisement des ressources naturelles 
+Disponibilité des centrales à 95 Suivi et analyse des arrêts
+Limiter les arrêts des centrales
+15
+Version V7 du 2122015
+Contrôle 
+surveillance et mesurage
+Audits
+Basés sur la norme ISO 19011, les audits internes environnement sont destinés à 
+ Déterminer si le SME est conforme à la norme ISO 14001,
+ Détecter les éventuels dysfonctionnements lors de lapplication du SME,
+ Vérifier lefficacité du SME, sa capacité à atteindre les objectifs,
+ Développer la démarche damélioration continue.
+La gestion des audits est définie dans la ProcedureAuditsinternes, document n 201001449 de la GED
+Visites de prévention environnement
+Des visites de prévention environnement ont lieu au moins une fois par an au
+niveau des différentes centrales permettant dapporter diverses actions préventives
+ou correctives, voire de modifier ou créer de nouveaux modes opératoires ou
+procédures.
+Vérification de la conformité réglementaire
+La vérification de la conformité réglementaire est faite périodiquement et le principe est décrit dans la
+procédure GEG1-104-237 stockée dans la GED.
+Elle est alimentée par la veille réglementaire annuelle en ce qui concerne les nouveaux textes.
+16
+Version V7 du 2122015
+Suivi  revue de direction environnement
+Les revues de Direction
+Les revues de direction sont organisées une fois par an et sont préparées et animées par le
+Responsable Environnement et le Responsable Environnement Opérationnel.
+Cette revue de direction aborde 
+ La validation de la politique environnementale, du manuel environnement et des AES,
+ Les résultats des audits internes et externes,
+ Les nouveaux aspects réglementaires,
+ Lévaluation de la conformité,
+ Le suivi des indicateurs,
+ Les évolutions pouvant toucher le SME,
+ Le périmètre de certification et son éventuelle évolution,
+ Lévaluation de la performance environnementale et donc lefficacité globale du SME,
+ Et tout autre sujet jugé nécessaire par le Responsable Environnement  formation, communication,
+Suite à la revue de direction, un compte rendu est rédigé en reprenant lensemble des conclusions de
+cette réunion et en particulier le choix des nouveaux objectifs et cibles, ainsi que le manuel environnement si
+celui-ci a évolué.
+17
+Version V7 du 2122015
