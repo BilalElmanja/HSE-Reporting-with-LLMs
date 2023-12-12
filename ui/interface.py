@@ -11,6 +11,8 @@ from langchain.chains import RetrievalQA
 from typing import Any, Dict, List, Mapping, Optional
 from pydantic import Extra, Field, root_validator
 from langchain.utils import get_from_dict_or_env
+import PyPDF2
+from io import BytesIO
 import re
 
 import replicate
@@ -18,7 +20,7 @@ import pdfplumber
 import time
 from datetime import datetime
 
-os.environ["REPLICATE_API_KEY"] = "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m"
+os.environ["REPLICATE_API_KEY"] = "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL"
 
 
 
@@ -165,8 +167,9 @@ class Document_Chain:
                                  retriever=self.retriever)
 
 
-class ConversationMemory:
+class ConversationChain(Document_Chain):
     def __init__(self, base_directory):
+        super().__init__()
         self.base_directory = base_directory
         self.current_conversation_id = None
         self.current_conversation_file = None
@@ -224,49 +227,146 @@ def clean_text_file(file_path):
 import chainlit as cl
 
 chain = Document_Chain()
-conversation_memory = ConversationMemory(base_directory='./documents')
+conversation_chain = ConversationChain(base_directory='./conversations')
+
+#pdf_directory = "./documents_pdf"
+#txt_directory = "./documents"
+
+
+#for filename in os.listdir(pdf_directory):
+    #if filename.endswith(".pdf"):
+        #pass
+        #pdf_file_path = os.path.join(pdf_directory, filename)
+        #text_file_path = convert_pdf_to_text(pdf_file_path, )
+        #print(f"Converted {filename} to {text_file_path}")
+
+#for filename in os.listdir(txt_directory):
+    #if filename.endswith(".txt"):
+        #pass
+        #txt_file_path = os.path.join(txt_directory, filename)
+        #clean_text_file(txt_file_path)
+        #print(f"Cleaned {filename}")
+
+
+#chain.initilize_chain("./documents", "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m")
+# Usage
+
+conversation_chain.start_new_conversation()
 
 @cl.on_chat_start
 async def on_chat_start():
     # Example usage
-    
-    pdf_directory = "./documents_pdf"
-    txt_directory = "./documents"
+    await cl.Message(content="Hello there, Welcome to AskAnyQuery related to Data!").send()
+    files = None
+
+    # Wait for the user to upload a PDF file
+    while files is None:
+        files = await cl.AskFileMessage(
+            content="Please upload your PDF Files to begin!",
+            accept=["application/pdf"],
+            max_size_mb=20,
+            timeout=180,
+        ).send()
 
     
-    for filename in os.listdir(pdf_directory):
-        if filename.endswith(".pdf"):
-            pass
-            #pdf_file_path = os.path.join(pdf_directory, filename)
-            #text_file_path = convert_pdf_to_text(pdf_file_path, )
-            #print(f"Converted {filename} to {text_file_path}")
-    
-    for filename in os.listdir(txt_directory):
-        if filename.endswith(".txt"):
-            pass
-            #txt_file_path = os.path.join(txt_directory, filename)
-            #clean_text_file(txt_file_path)
-            #print(f"Cleaned {filename}")
+    for file in files:
+
+        # Convert the PDF file to text
+        msg = cl.Message(content=f"Processing `{file.name}`...")
+        await msg.send()
+
+        # Read the PDF file
+        pdf_stream = BytesIO(file.content)
+        pdf = PyPDF2.PdfReader(pdf_stream)
+        pdf_text = ""
+        for page in pdf.pages:
+            pdf_text += page.extract_text()
+
+        # Write the PDF text to a text file
+        txt_filename = f"{file.name.split('.')[0]}.txt"
+        txt_filepath = os.path.join("./documents", txt_filename)
+        with open(txt_filepath, 'w', encoding='utf-8') as txt_file:
+            txt_file.write(pdf_text)
+        
+        # Clean the text file
+        clean_text_file(txt_filepath)
 
     
-    #chain.initilize_chain("./documents", "r8_eehqKGwhuv0jF2KLISsOwIJo0eupYm60oj12m")
-    # Usage
-    
-    #conversation_memory.start_new_conversation()
+    # Let the user know that the model is being initialized
+    msg.content = f"the chain is about to be initialized..."
+    await msg.update()
 
+    # Initialize the chain for documents and conversation
+    chain.initilize_chain("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+    conversation_chain.initilize_chain("./conversations", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+
+    # Let the user know that the system is ready
+    msg.content = f"chain initialized! Ask me anything!"
+    await msg.update()
+
+    cl.user_session.set("chain", chain)
+    cl.user_session.set("conversation_chain", conversation_chain)
 
 @cl.on_message
 async def on_message( message: cl.Message):
+    
    
     user_input = message.content
-    user_files = message.elements
-    print(user_files[0].path)
-    msg = cl.Message(content="done")
-    #response = chain.chain.invoke(user_input)
-    #for text in response['result']:
-        #await msg.stream_token(text)
-        #time.sleep(0.01)
-
-
-
+    chain = cl.user_session.get("chain")
+    conversation_chain = cl.user_session.get("conversation_chain")
+    msg = cl.Message(content="processing ...")
     await msg.send()
+
+    # check if the user has uploaded a file
+    files = message.elements
+    if len(files) > 0:
+        for file in files:
+            # Convert the PDF file to text
+            msg.content = f"Processing `{files[0].name}`..."
+            await msg.update()
+
+            # Read the PDF file
+            pdf_stream = BytesIO(files[0].content)
+            pdf = PyPDF2.PdfReader(pdf_stream)
+            pdf_text = ""
+            for page in pdf.pages:
+                pdf_text += page.extract_text()
+
+            # Write the PDF text to a text file
+            txt_filename = f"{files[0].name.split('.')[0]}.txt"
+            txt_filepath = os.path.join("./documents", txt_filename)
+            with open(txt_filepath, 'w', encoding='utf-8') as txt_file:
+                txt_file.write(pdf_text)
+            
+            # Clean the text file
+            clean_text_file(txt_filepath)
+
+
+        # Initialize the chain
+        chain.initilize_chain("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+
+    # Let the user know that the system is ready
+    msg.content = f"processing question... "
+    await msg.update()
+    
+    response_document = chain.chain.invoke(user_input)
+    response_conversation = conversation_chain.chain.invoke(user_input)
+    msg.content = "\nresponse based on documents: \n" 
+    await msg.update()
+    
+    for text in response_document['result']:
+        await msg.stream_token(text)
+        time.sleep(0.01)
+    
+    await msg.update()
+
+    msg.content += "\nresponse based on conversation: \n"
+    await msg.update()
+    for text in response_conversation['result']:
+        await msg.stream_token(text)
+        time.sleep(0.01)
+    
+    await msg.send()
+    conversation_chain.add_to_conversation(user_input, msg.content)
+
+    

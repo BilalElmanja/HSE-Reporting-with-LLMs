@@ -1,0 +1,13 @@
+Conversation ID: 20231212135810
+User: what is the internship program is about ? provide all the details 
+Agent: 
+response based on documents: 
+ I don't have enough information to provide a helpful answer to this question. Can you please provide more context or clarify which internship program you are referring to? There may be different internship programs offered by various organizations, and without additional information, it's difficult for me to provide a detailed answer.
+response based on conversation: 
+ The internship program is about designing and developing deep learning models for multimodal emotion recognition, specifically focusing on speech, text, and face modalities. The goal is to create a system that can detect emotions in real-time, using various sensors and data sources, and integrate it with the robot Tiago, which is developed by the CESI LINEACT laboratory. The internship will involve conceiving and implementing architectures and loss functions specific to each modality, as well as exploring ways to optimize them. The solutions developed during the internship could potentially be integrated into the robot Tiago, enabling it to better understand human emotions and behaviors. The project will take place at CESI's campus in Nancy and will last for six months. The required competencies for this project include a good understanding of machine learning methods, programming skills in Python, and mastery of PyTorch or TensorFlow libraries. Additionally, knowledge in robotics would be beneficial.
+User: what is the context of the document ? 
+Agent: 
+response based on documents: 
+ The context of the document appears to be a call for applications for a research internship in the field of multimodal emotion recognition at CESI Ecole d'Ingénieurs à Nancy. The internship will focus on developing a fusion of multimedia modalities for spontaneous emotional conversations and will involve working with deep learning models and multimodal data. The document provides information about the required qualifications and application process, as well as references to relevant research papers in the field.
+response based on conversation: 
+ The context of the document appears to be a conversation between a user (Bilal El Manja) and an agent, likely a chatbot or virtual assistant, regarding an internship opportunity in the field of artificial intelligence and data science. The conversation is taking place through a messaging platform, and the agent is providing information and answering questions posed by Bilal related to the internship program.
