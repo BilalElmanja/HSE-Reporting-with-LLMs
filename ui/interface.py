@@ -65,7 +65,7 @@ class LLM_model(LLM):
                     "temperature": 0.01,
                     "prompt": prompt,
                     "system_prompt": "",
-                    "max_new_tokens": 512,
+                    "max_new_tokens": 4096,
                     "min_new_tokens": -1
             }
             
@@ -74,6 +74,25 @@ class LLM_model(LLM):
         for text in output:
             response += text
         return response
+    
+    def predict(self, prompt):
+        output = replicate.run(
+            self.model,
+            input = {
+                    "debug": False,
+                    "top_k": 10,
+                    "top_p": 1,
+                    "temperature": 0.01,
+                    "prompt": prompt,
+                    "system_prompt": "",
+                    "max_new_tokens": 4096,
+                    "min_new_tokens": -1
+            }
+            
+        )
+        
+        return output
+
         
         
     
@@ -94,6 +113,8 @@ class Document_Chain:
         self.model_config = None
         self.model_name = None
         self.bge_embeddings = None
+        self.vectorstore = None
+        self.store = None
 
 
     def embedding_model(self):
@@ -125,20 +146,22 @@ class Document_Chain:
         return docs
 
     def retriever_big_chunks(self, docs):
-        parent_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-        child_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
-        vectorstore = Chroma(collection_name="split_parents", embedding_function=self.bge_embeddings)
-        store = InMemoryStore()
+        parent_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
+        child_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=70)
+        self.vectorstore = Chroma(collection_name="split_parents", embedding_function=self.bge_embeddings)
+        self.store = InMemoryStore()
 
         big_chunks_retriever = ParentDocumentRetriever(
-            vectorstore=vectorstore,
-            docstore=store,
+            vectorstore= self.vectorstore,
+            docstore= self.store,
             child_splitter=child_splitter,
             parent_splitter=parent_splitter,
+
         )
 
         big_chunks_retriever.add_documents(docs)
         return big_chunks_retriever
+    
     
     def initilize_model(self, api_token):
         os.environ["REPLICATE_API_TOKEN"]=api_token
@@ -165,6 +188,8 @@ class Document_Chain:
         self.chain = RetrievalQA.from_chain_type(llm=self.model,
                                  chain_type="stuff",
                                  retriever=self.retriever)
+        
+    
 
 
 class ConversationChain(Document_Chain):
@@ -183,8 +208,43 @@ class ConversationChain(Document_Chain):
 
     def add_to_conversation(self, user_input, agent_response):
         with open(self.current_conversation_file, 'a') as file:
-            file.write(f"User: {user_input}\n")
-            file.write(f"Agent: {agent_response}\n")
+            file.write(f"Me: {user_input}\n")
+            file.write(f"You: {agent_response}\n")
+
+
+
+class PromptTemplate:
+    def __init__(self, threshold=0.5):
+        self.threshold = threshold
+        # additional initialization
+
+    def generate_response(self, user_input, retrieved_docs, model):
+        
+        return self.create_response(user_input, retrieved_docs, model)
+        
+
+    def is_relevant(self, user_input , docs, model):
+        # Use LLM to generate a response based on the query and docs
+        model_prompt = f"below is a provided content extracted from some document in the database, \n " + \
+         f"content : \n {docs} \n \n now based on this content, is it sufficient to answer to this question even to get just a little close : {user_input} ? \n answer only by yes or no"
+        response = model.predict(model_prompt)
+        if "yes" in response:
+            return True
+        else:
+            return False # placeholder
+
+    def create_response(self, user_input, docs, conversation, model):
+        # Use LLM to generate a response based on the query and docs
+        model_prompt = f"below is a provided content extracted from some document in the database, and it is the most relevant content to this question : {user_input} \n " + \
+         f"content : \n {docs} \n and here's the conversations history between you and me \n conversation : {conversation} \n now based on this content, and the conversation, can you please give a well detailed answer to the question : {user_input} " + \
+             f" \n  if you find the content not sufficient to answer the question, answer based on the conversation only and in a friendly way "
+        
+        return model.predict(model_prompt)  # placeholder
+        
+
+    def ask_for_clarification(self):
+        return "Can you please provide more specific details?"
+
 
 
 
@@ -224,10 +284,14 @@ def clean_text_file(file_path):
     return file_path
 
 
+
 import chainlit as cl
 
 chain = Document_Chain()
 conversation_chain = ConversationChain(base_directory='./conversations')
+prompt_template = PromptTemplate()
+
+conversation_chain.initilize_chain("./conversations", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
 
 #pdf_directory = "./documents_pdf"
 #txt_directory = "./documents"
@@ -253,11 +317,14 @@ conversation_chain = ConversationChain(base_directory='./conversations')
 
 conversation_chain.start_new_conversation()
 
+
+
 @cl.on_chat_start
 async def on_chat_start():
     # Example usage
-    await cl.Message(content="Hello there, Welcome to AskAnyQuery related to Data!").send()
+    await cl.Message(content="Hello there, Welcome to HSE Agent").send()
     files = None
+    
 
     # Wait for the user to upload a PDF file
     while files is None:
@@ -265,7 +332,7 @@ async def on_chat_start():
             content="Please upload your PDF Files to begin!",
             accept=["application/pdf"],
             max_size_mb=20,
-            timeout=180,
+            timeout=500,
         ).send()
 
     
@@ -280,6 +347,7 @@ async def on_chat_start():
         pdf = PyPDF2.PdfReader(pdf_stream)
         pdf_text = ""
         for page in pdf.pages:
+
             pdf_text += page.extract_text()
 
         # Write the PDF text to a text file
@@ -297,8 +365,11 @@ async def on_chat_start():
     await msg.update()
 
     # Initialize the chain for documents and conversation
-    chain.initilize_chain("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
-    conversation_chain.initilize_chain("./conversations", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+    
+    await cl.make_async(chain.initilize_chain)("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+    await cl.make_async(conversation_chain.initilize_chain)("./conversations", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+
+    time.sleep(1)
 
     # Let the user know that the system is ready
     msg.content = f"chain initialized! Ask me anything!"
@@ -314,8 +385,9 @@ async def on_message( message: cl.Message):
     user_input = message.content
     chain = cl.user_session.get("chain")
     conversation_chain = cl.user_session.get("conversation_chain")
-    msg = cl.Message(content="processing ...")
+    msg = cl.Message(content="processing question... ")
     await msg.send()
+    conversation_chain.initilize_chain("./conversations", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
 
     # check if the user has uploaded a file
     files = message.elements
@@ -343,28 +415,23 @@ async def on_message( message: cl.Message):
 
 
         # Initialize the chain
-        chain.initilize_chain("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+        await cl.make_async(chain.initilize_chain)("./documents", "r8_ajmkmZq4JFMU31elTaIkBXcakllnvuA2463RL")
+        time.sleep(4)
+    
+    #response_document = chain.chain.invoke(user_input)
+    #response_conversation = conversation_chain.chain.invoke(user_input)
+    response_doc =  chain.retriever.get_relevant_documents(user_input)
+    response_conv =  conversation_chain.retriever.get_relevant_documents(user_input)
+    model_response = await cl.make_async(prompt_template.create_response)(user_input, response_doc, response_conv, chain.model)
 
-    # Let the user know that the system is ready
-    msg.content = f"processing question... "
-    await msg.update()
-    
-    response_document = chain.chain.invoke(user_input)
-    response_conversation = conversation_chain.chain.invoke(user_input)
-    msg.content = "\nresponse based on documents: \n" 
-    await msg.update()
-    
-    for text in response_document['result']:
-        await msg.stream_token(text)
-        time.sleep(0.01)
-    
+    msg.content = ""
     await msg.update()
 
-    msg.content += "\nresponse based on conversation: \n"
-    await msg.update()
-    for text in response_conversation['result']:
+    for text in model_response:
         await msg.stream_token(text)
-        time.sleep(0.01)
+        time.sleep(0.1)
+
+
     
     await msg.send()
     conversation_chain.add_to_conversation(user_input, msg.content)
