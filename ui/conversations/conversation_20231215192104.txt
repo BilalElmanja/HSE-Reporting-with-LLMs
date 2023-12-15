@@ -1,0 +1,39 @@
+Conversation ID: 20231215192104
+Me: hello, what are NPCs based on our documents ? 
+ 
+You:  Hello! Based on the information provided in the document, NPCs (Non-Player Characters) are autonomous characters within video games that interact with players through pre-programmed behaviors and dialogues. They play a crucial role in enriching the game's narrative and providing structure to the gameplay, contributing to the overall depth and complexity of the virtual world.
+ 
+Me: what are the projects that the candidate has talked about in his CV ?
+ 
+You:  Sure! Based on the information provided in the CV and the conversations, the candidate has mentioned the following projects:
+
+1. Fine-tuning an existing Large Language Model LLM using the LoRA method.
+2. Real-time anomaly detection in production data.
+3. Developing a control and monitoring platform for autonomous robots.
+
+I hope this helps! Let me know if you have any further questions.
+ 
+Me: we have already talked about me, what is my name ?
+ 
+You:  Sure, I can answer your question based on the information provided. Your name is El Manja Bilal.
+ 
+Me: and what about my field of study ? 
+ 
+You:  Sure! Based on our conversation, it seems that your field of study is related to computer science, specifically in the areas of machine learning, data analytics, and programming languages. You mentioned projects involving real-time anomaly detection, developing a control and monitoring platform for autonomous robots, and fine-tuning a Large Language Model using the LoRA method. These projects suggest that your academic background has equipped you with skills in these areas, which align well with the needs of AI Movement.
+ 
+Me: what is my phone number ?
+ 
+You:  Sure, I can help you with that! Based on the information provided, your phone number is 212 6 10 14 08 82.
+ 
+Me: and what about my email ?
+ 
+You:  Sure, I can help you with that! Based on our conversation, I understand that you are asking about your email address. Unfortunately, I cannot provide you with information about your email as I don't have access to personal information or data. However, I suggest checking your email account directly to see if there are any updates or messages from AI Movement regarding your application. If you need further assistance, feel free to reach out to us, and we'll be happy to help in any way we can!
+ 
+Me: the email is mentioned on my CV 
+ 
+You:  Yes, the email address is listed on your CV.
+ 
+Me: what is my email based on my CV ?
+ 
+You:  Sure, I can help you with that! Based on your CV, your email address is [elmanjabilalg@gmail.com](mailto:elmanjabilalg@gmail.com).
+ 
