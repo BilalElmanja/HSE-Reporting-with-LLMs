@@ -564,17 +564,14 @@ async def on_message( message: cl.Message):
             chain.done = False
             await cl.make_async(chain.add_new_document)(file.name.split('.')[0] + ".txt")
 
-    if current_conversation == "":
-        #conversation_chain.memory.save_context({"input": user_input}, {"output": ""})
+    
+    try:
+        current_memory = conversation_chain.memory.get_relevant_documents(user_input)[0].page_content
+        print("\n \n")
+        print(" current memory " , current_memory)
+        print("\n \n")
+    except:
         current_memory = ""
-    else:
-        try:
-            current_memory = conversation_chain.memory.get_relevant_documents(user_input)[0].page_content
-            print("\n \n")
-            print(" current memory " , current_memory)
-            print("\n \n")
-        except:
-            current_memory = ""
 
     current_conversation += f"Me: {user_input}\n"
 
