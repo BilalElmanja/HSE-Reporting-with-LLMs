@@ -12,6 +12,8 @@ from typing import Any, Dict, List, Mapping, Optional
 from pydantic import Extra, Field, root_validator
 from langchain.utils import get_from_dict_or_env
 from langchain.storage._lc_store import create_kv_docstore
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 from langchain.storage import LocalFileStore
 import faiss
 from langchain.docstore import InMemoryDocstore
@@ -118,19 +120,30 @@ class DocumentChain:
             encode_kwargs={'normalize_embeddings': True} # set True to compute cosine similarity
         )
 
+    def update_processed_docs(self):
+        with open("processed_docs.txt", 'w') as file:
+            for doc_name in self.doc_names:
+                file.write(doc_name + "\n")
 
     def load_documents(self):
         loaders = []
         for filename in os.listdir(self.directory):
-            filepath = os.path.join(self.directory, filename)
-            if filename.endswith('.txt'):
-                loaders.append(TextLoader(filepath))
-            elif filename.endswith('.pdf'):
-                loaders.append(PyPDFLoader(filepath))
-            self.doc_names.append(filename)
+            if filename in self.doc_names:
+                continue
+            else:
+                filepath = os.path.join(self.directory, filename)
+                if filename.endswith('.txt'):
+                    loaders.append(TextLoader(filepath))
+                elif filename.endswith('.pdf'):
+                    loaders.append(PyPDFLoader(filepath))
+                self.doc_names.append(filename)
         self.docs = []
         for loader in loaders:
             self.docs.extend(loader.load())
+
+        # write a text file in the current directory with the names of the documents already processed
+        self.update_processed_docs()
+
 
         print(f"Loaded {len(self.docs)} documents")
 
@@ -176,15 +189,16 @@ class DocumentChain:
         self.done = False
         # check for every doc in directory, if it's already in the store, if not, add it
         filepath = os.path.join(self.directory, filename)
-
         loader = []
         loader.append(TextLoader(filepath))
         doc = []
         for load in loader:
             doc.extend(load.load())    
         self.retriever.add_documents(doc)
-        
+        self.doc_names.append(filename)
+        self.update_processed_docs
         self.done = True
+
         
     
 
@@ -244,15 +258,16 @@ class ConversationChain():
         print(f"Loaded {len(self.docs)} conversations")
 
 
-    
-
     def init_retriever(self):
         parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2500, chunk_overlap=250)
         child_splitter = RecursiveCharacterTextSplitter(chunk_size=500)
+
         memory_parent_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=250)
         memory_child_splitter = RecursiveCharacterTextSplitter(chunk_size=500)
+
         fs = LocalFileStore("./conv_store")
         self.store = create_kv_docstore(fs)
+
         self.vectorstore = Chroma(collection_name="old_conv", embedding_function=self.bge_embeddings, persist_directory="conv_db/")
         self.memory_vectorstore = Chroma(collection_name="current_conv", embedding_function=self.bge_embeddings)
         
@@ -270,6 +285,7 @@ class ConversationChain():
             parent_splitter=memory_child_splitter,
 
         )
+
         if self.docs:
             self.retriever.add_documents(self.docs)
 
@@ -354,54 +370,38 @@ class PromptTemplate:
         return "Can you please provide more specific details?"
 
 
-
-class DocumentPromptTemplate:
-
-    def generate_reformulations(self, user_input):
-        # Ask the model to provide 4 reformulations of the user's request
-        reformulations = self.get_reformulations(user_input, 3)
-
-        # Retrieve relevant documents for each reformulation
-        all_reformulations = []
-        reformulations = reformulations.split("\n")
-        for reformulation in reformulations:
-            if "?" in reformulation:
-                all_reformulations.append(reformulation)
+class Question_State_Chain:
+    # this is a class that controls the flow of a question answering bot, the bot will question the user, and based on the user's response, it will decide what to do next
+    def __init__(self, model):
+        self.state = "start"
+        self.question = ""
+        self.response = ""
+        self.question_answered = False
+        self.conversation = ""
+        self.count_questions = 0
+        self.model = model
         
-        return all_reformulations
-
-    def get_reformulations(self, input_text, num_reformulations):
-        # Implement logic to get reformulations from the model
-        return f"here's a question provided by me : {input_text} \n can you please provide {num_reformulations} reformulations of this question ? give each reformulation in a new line" 
-
-    def fuse_documents(self, contexts, user_input):
-        # Implement logic to fuse documents into a single context
-        return f"here's a provided context from many pieces of documents : \n context 1 : {contexts[0]} \n context 2 : {contexts[1]}  \n now based on this context, can you please provide an answer to the question : {user_input} ?"
+    
+    def start(self):
+        self.question = "you are an HSE expert, your name Ibtissam el Hassani, and your job is to interrogate me with a bunch of questions to know my working situation and to generate a final report, the questions should be from general to specific, " + \
+        "Now give the first question. start by greeting me, and then ask the question."
+        response = self.model.predict(self.question)
+        return response
         
-
-class ConversationPromptTemplate:
-
-    def generate_reformulations(self, user_input):
-        # Ask the model to provide 4 reformulations of the user's request
-        reformulations = self.get_reformulations(user_input, 1)
-
-        # Retrieve relevant documents for each reformulation
-        all_reformulations = []
-        reformulations = reformulations.split("\n")
-        for reformulation in reformulations:
-            if "?" in reformulation:
-                all_reformulations.append(reformulation)
+ 
+    def complete_conversation(self):
         
-        return all_reformulations
+        prompt = f"you are Ibtissam El Hassani, based on the conversation history between you and me : \n{self.conversation}, \n \nif we didn't complete 4 questions, ask the next relevant question, don't talk about the previous questions, just ask the next relevant question. " + \
+            f"if you already asked 4 questions and i answered all of them (no matter what the answer, you're only gettig to better my situation), write a full report within the HSE regulations." 
+        response = self.model.predict(prompt)
+        return response
+    
+    def generate_report(self):
+        prompt = f"you are Ibtissam el Hassani, based on the conversation history between you and me : \n{self.conversation}, \n \nwrite a full report within the HSE regulations." 
+        response = self.model.predict(prompt)
+        return response
+    
 
-    def get_reformulations(self, input_text, num_reformulations):
-        # Implement logic to get reformulations from the model
-        return f"here's a question provided by me : {input_text} \n can you please provide {num_reformulations} reformulations of this question that represent all my potential meanings ? give each reformulation in a new line" 
-
-    def fuse_documents(self, contexts, user_input):
-        # Implement logic to fuse documents into a single context
-        return f"here's a provided context from many parts of your conversation with me : \n context 1 : {contexts[0]} \n context 2 : {contexts[1]}  \n now based on this context, can you please provide an answer to the question : {user_input} ? \n if you find the context not sufficient to answer the question, answer only based on my question and forget the conversation context"
-        
 
 def convert_pdf_to_text(pdf_file_path, text_file_path=None):
     # Determine the output text file path
@@ -437,16 +437,31 @@ def clean_text_file(file_path):
     return file_path
 
 
+# Function to create a PDF file
+def create_pdf(file_path, text):
+    c = canvas.Canvas(file_path, pagesize=letter)
+    width, height = letter
+    margin = 35  # 1 inch margin
+
+    text_object = c.beginText(margin, height - margin)
+    text_object.setFont("Times-Roman", 12)
+    text_object.textLines(text)
+
+    c.drawText(text_object)
+    c.save()
+
+# Path where the PDF will be saved
+pdf_file_path = "final_report.pdf"
+
 
 import chainlit as cl
 
 # -----------------------------------------------------------------------------------------------
 
-chain = DocumentChain()
+document_chain = DocumentChain()
 conversation_chain = ConversationChain()
 prompt_template = PromptTemplate()
-document_prompt_template = DocumentPromptTemplate()
-conversation_prompt_template = ConversationPromptTemplate()
+
 
 # -----------------------------------------------------------------------------------------------
 
@@ -464,110 +479,117 @@ conversation_chain.init_chain()
 
 # -----------------------------------------------------------------------------------------------
 
-chain.init_chain()
-
-
+document_chain.init_chain()
+question_state_chain = Question_State_Chain(model=document_chain.model)
 
 # -----------------------------------------------------------------------------------------------
 
 @cl.on_chat_start
 async def on_chat_start():
-    # Example usage
-    #msg = cl.Message(content="Hello Dear !")
-    #await msg.send()
-    #time.sleep(1)
-    #files = None 
-    # Wait for the user to upload a PDF file
-    #if len(os.listdir("./documents")) == 0:
 
-     #   while files is None:
-     #       files = await cl.AskFileMessage(
-      #          content="Please upload your first PDF File to begin!",
-       #         accept=["application/pdf"],
-       #         max_size_mb=20,
-        #        timeout=500,
-        #    ).send()
-
-        #for file in files:
-            # Convert the PDF file to text
-         #   msg = cl.Message(content=f"Processing `{file.name}`...")
-         #   await msg.send()
-
-            # Read the PDF file
-        #    pdf_stream = BytesIO(file.content)
-        #    pdf = PyPDF2.PdfReader(pdf_stream)
-        #    pdf_text = ""
-        #    for page in pdf.pages:
-
-        #        pdf_text += page.extract_text()
-            # Write the PDF text to a text file
-         #   txt_filename = f"{file.name.split('.')[0]}.txt"
-         #   txt_filepath = os.path.join("./documents", txt_filename)
-         #   with open(txt_filepath, 'w', encoding='utf-8') as txt_file:
-         #       txt_file.write(pdf_text)
-            
-         #   # Clean the text file
-         #   clean_text_file(txt_filepath)
-
-    # Let the user know that the model is being initialized
-    #while not chain.done:
-    #    msg.content = f"Initializing Application ..."
-    #    await msg.update()
-    #    time.sleep(1)  
-        
-    #while not conversation_chain.done:
-    #    msg.content = f"Initializing Application ..."
-    #    await msg.update()
-     #   time.sleep(1) 
-
-    # Let the user know that the system is ready
-    #msg.content = f"Done ! Ask me anything!"
-    #await msg.update()
-
-    cl.user_session.set("chain", chain)
+    cl.user_session.set("document_chain", document_chain)
     cl.user_session.set("conversation_chain", conversation_chain)
+    cl.user_session.set("question_state_chain", question_state_chain)
 
+    msg = cl.Message(content="Welcome to HSE Report generation, and App designed to help you be comfortable at your current working environment.\n Type 'okey' to start !")
+    await msg.send()
+    
+    
 @cl.on_message
 async def on_message( message: cl.Message):
-    
-    current_conversation = ""
-    user_input = message.content
-    chain = cl.user_session.get("chain")
+
+    question_state_chain = cl.user_session.get("question_state_chain")
+    document_chain = cl.user_session.get("document_chain")
     conversation_chain = cl.user_session.get("conversation_chain")
     msg = cl.Message(content="processing ... ")
     await msg.send()
+    # user type anything to start the conversation
+    if question_state_chain.state == "start":
+        msg.content += "\n \n"
+        await msg.update()
+        question = await cl.make_async(question_state_chain.start)()
+        quesion_text = ""
+        for text in question:
+            await msg.stream_token(text)
+            quesion_text += text
+            time.sleep(0.1)
 
-    # check if the user has uploaded a file
-    files = message.elements
-    if len(files) > 0:
-        for file in files:
-            print(file)
-            # Convert the PDF file to text
-            msg.content = f"Processing `{files[0].name}`..."
-            await msg.update()
+        await msg.send()
+        question_state_chain.conversation += f"You: {quesion_text}\n \n"
+        question_state_chain.question = quesion_text
+        question_state_chain.state = "ask_question"
 
-            # Read the PDF file
-            pdf_stream = BytesIO(files[0].content)
-            pdf = PyPDF2.PdfReader(pdf_stream)
-            pdf_text = ""
-            for page in pdf.pages:
-                pdf_text += page.extract_text()
-
-            # Write the PDF text to a text file
-            txt_filename = f"{file.name.split('.')[0]}.txt"
-            txt_filepath = os.path.join("./documents", txt_filename)
-            with open(txt_filepath, 'w', encoding='utf-8') as txt_file:
-                txt_file.write(pdf_text)
-            
-            # Clean the text file
-            clean_text_file(txt_filepath)
-            chain.done = False
-            await cl.make_async(chain.add_new_document)(file.name.split('.')[0] + ".txt")
-
-    if current_conversation == "":
-        #conversation_chain.memory.save_context({"input": user_input}, {"output": ""})
-        current_memory = ""
     else:
+        
+        user_input = message.content
+        if user_input == "report":
+            question_state_chain.state = "report"
+            response = await cl.make_async(question_state_chain.generate_report)()
+            response_text = ""
+            msg.content = ""
+            await msg.update()
+            for text in response:
+                response_text += text
+                await msg.stream_token(text)
+                time.sleep(0.1)
+
+            
+            # save the report in a pdf file
+            with open(f"report_{conversation_chain.current_conversation_id}.pdf", 'w', encoding='utf-8') as file:
+                file.write(response_text)
+
+
+            # Create the PDF
+            create_pdf(pdf_file_path, response_text)
+            # send the pdf file to the user
+            msg.content += "\n\nHere's the downloadable version of the report"  
+            await msg.update()
+            elements = [
+                            cl.File(
+                        name="final_report.pdf",
+                        path="./final_report.pdf",
+                        display="inline",
+                        ),
+                ]  
+            msg.elements = elements
+
+
+
+            await msg.send()
+            
+            #question_state_chain.conversation += f"You: {response_text}\n \n"
+            #question_state_chain.state = "end"
+            return
+        question_state_chain.conversation += f"Me: {user_input}\n \n"
+
+        # check if the user has uploaded a file
+        files = message.elements
+        if len(files) > 0:
+            for file in files:
+                print(file)
+                # Convert the PDF file to text
+                msg.content = f"Processing `{files[0].name}`..."
+                await msg.update()
+
+                # Read the PDF file
+                pdf_stream = BytesIO(files[0].content)
+                pdf = PyPDF2.PdfReader(pdf_stream)
+                pdf_text = ""
+                for page in pdf.pages:
+                    pdf_text += page.extract_text()
+
+                # Write the PDF text to a text file
+                txt_filename = f"{file.name.split('.')[0]}.txt"
+                txt_filepath = os.path.join("./documents", txt_filename)
+                with open(txt_filepath, 'w', encoding='utf-8') as txt_file:
+                    txt_file.write(pdf_text)
+                
+                # Clean the text file
+                clean_text_file(txt_filepath)
+                document_chain.done = False
+                document_chain.add_new_document(file.name.split('.')[0] + ".txt")
+
+        
         try:
             current_memory = conversation_chain.memory.get_relevant_documents(user_input)[0].page_content
             print("\n \n")
@@ -576,25 +598,52 @@ async def on_message( message: cl.Message):
         except:
             current_memory = ""
 
-    current_conversation += f"Me: {user_input}\n"
+        
 
-    if chain.done and conversation_chain.done:
-        response_doc =  chain.retriever.get_relevant_documents(user_input)
-        response_conv =  conversation_chain.retriever.get_relevant_documents(user_input)
-        model_response = await cl.make_async(prompt_template.create_response)(user_input, response_doc[0].page_content, response_conv[0].page_content, current_memory, chain.model)
-        msg.content = "\n \n"
+        response_value = await cl.make_async(question_state_chain.complete_conversation)()
+        response_value_text = ""
+        msg.content = ""
         await msg.update()
-        response = ""
-
-        for text in model_response:
+        for text in response_value:
+            response_value_text += text
             await msg.stream_token(text)
-            response += text
-            time.sleep(0.1)
+
+        question_state_chain.conversation += f"You: {response_value_text}\n \n"
+        
+
+       # print("\n passed to get_QA_value_response \n")
+       # question = await cl.make_async(question_state_chain.get_QA_value_response)(question_state_chain.conversation)
+       # question_text = ""
+        #msg.content += "\n\n"
+        #await msg.update()
+        #for text in question:
+        #    question_text += text
+        #    await msg.stream_token(text)
+        #await msg.send()
+        #question_state_chain.question = question_text
+        #question_state_chain.conversation += f"You: {question_text}\n \n"
+        
+
+        #response_doc =  document_chain.retriever.get_relevant_documents(user_input)
+        #response_conv =  conversation_chain.retriever.get_relevant_documents(user_input)
+        #model_response = await cl.make_async(prompt_template.create_response)(user_input, response_doc[0].page_content, response_conv[0].page_content, current_memory, document_chain.model)
+        #msg.content = "\n \n"
+        #await msg.update()
+        #response = ""
+
+        #for text in model_response:
+        #    await msg.stream_token(text)
+        #    response += text
+        #    time.sleep(0.1)
 
         await msg.send()
-        current_conversation += f" \nYou: {response}\n \n"
-        conversation_chain.add_to_conversation(current_conversation)
-        await cl.make_async(conversation_chain.add_to_memory)()
-    
+        #current_conversation += f" \nYou: {response}\n \n"
+        #conversation_chain.add_to_conversation(current_conversation)
+        #conversation_chain.add_to_memory()
+        # write the conversation to a text file in the conversations directory
+        conversation_chain.start_new_conversation()
+        with open(conversation_chain.current_conversation_file, 'a') as file:
+            file.write(f"{question_state_chain.conversation}")
+
 
     

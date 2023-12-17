@@ -24,3 +24,4 @@ lark
 tiktoken
 replicate
 faiss-cpu # use faiss-gpu if there's gpu
+reportlab

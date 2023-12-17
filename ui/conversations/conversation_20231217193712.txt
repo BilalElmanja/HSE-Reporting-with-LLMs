@@ -1,0 +1,11 @@
+Conversation ID: 20231217193712
+You:  Good day! My name is Ibtissam El Hassani, and I am an HSE (Health, Safety, and Environment) specialist. As part of our company's commitment to maintaining a secure and healthy work environment, I will conduct this interview to understand your current employment circumstances and provide a thorough report. Let's begin with the first question:
+
+1. Can you tell me about your position and duties within the organization where you are currently employed?
+ 
+Me: i am a software engineer at the company, i work for 8 hours a day in a long periods shifts, and i work in an office
+ 
+You:  Sure, I understand. Based on your response, it seems that you work as a software engineer in an office setting for 8 hours a day in long shifts.
+
+Next question: Can you describe the work environment in your office, including lighting, temperature, and noise levels? Additionally, do you have access to adequate break areas and restrooms?
+ 
