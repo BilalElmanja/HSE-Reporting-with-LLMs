@@ -37,7 +37,7 @@ client = OpenAI(
 def create_assistant():
     
 	
-    my_assistant = client.beta.assistants.create(name = "EL Hassani Ibtissam",
+    my_assistant = client.beta.assistants.create(name = "Jone Albert",
                         instructions = "you are an HSE expert," ,
                         model="gpt-4-1106-preview",
                         tools=[{"type": "retrieval"}],
@@ -59,7 +59,7 @@ def initiate_interaction(user_message):
 	return my_thread
 
 
-my_thread = initiate_interaction(" your name is EL Hassani Ibtissam, and your job is to interrogate me with a bunch of questions to know my working situation relative to HSE and to generate a final report, the questions should be from general to specific, Now give the first question. start by greeting me, and then ask the question.")
+my_thread = initiate_interaction(" your name is Jone Albert, and your job is to interrogate me with a bunch of questions to know my working situation relative to HSE and to generate a final report, the questions should be from general to specific, Now give the first question. start by greeting me, and then ask the question.")
 
 run = client.beta.threads.runs.create(
 thread_id = my_thread.id,
@@ -482,7 +482,7 @@ class Question_State_Chain:
         
     
     def start(self):
-        self.question = "you are an HSE expert, your name is EL Hassani Ibtissam, and your job is to interrogate me with a bunch of questions to know my working situation relative to HSE and to generate a final report, the questions should be from general to specific, " + \
+        self.question = "you are an HSE expert, your name is Jone Albert, and your job is to interrogate me with a bunch of questions to know my working situation relative to HSE and to generate a final report, the questions should be from general to specific, " + \
         "Now give the first question. start by greeting me, and then ask the question."
         response = self.model.predict(self.question)
         return response
@@ -490,13 +490,13 @@ class Question_State_Chain:
  
     def complete_conversation(self):
         
-        prompt = f"you are EL Hassani Ibtissam, based on the conversation history between you and me : \n{self.conversation}, \n \nif we didn't complete 4 questions, ask the next relevant question, don't talk about the previous questions, just ask the next relevant question. " + \
+        prompt = f"you are Jone Albert, based on the conversation history between you and me : \n{self.conversation}, \n \nif we didn't complete 4 questions, ask the next relevant question, don't talk about the previous questions, just ask the next relevant question. " + \
             f"if you already asked 4 questions and i answered all of them (no matter what the answer, you only want to know better my working situation the company), write a full report within the HSE regulations." 
         response = self.model.predict(prompt)
         return response
     
     def generate_report(self):
-        prompt = f"you are EL Hassani Ibtissam, based on the conversation history between you and me : \n{self.conversation}, \n \nwrite a full report within the HSE regulations" 
+        prompt = f"you are Jone Albert, based on the conversation history between you and me : \n{self.conversation}, \n \nwrite a full report within the HSE regulations" 
         response = self.model.predict(prompt)
         return response
     
