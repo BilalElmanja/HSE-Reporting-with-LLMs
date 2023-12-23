@@ -1,0 +1,367 @@
+A brief introduction to reinforcement learning
+December 14, 20231Markov chain
+2Controlled Markov chain
+3Controlled Markov chain with a goal
+4Markov decision process
+5Solving an MDP with Full Knowledge of Dynamics
+6Reinforcement learning Solving an MDP without complete Knowledge
+of Dynamics
+7Deep Reinforcement learning
+8Policy gradient methodsMarkov chain
+Definition
+A Markov chain is a stochastic process, denoted as Stt0, where the
+next state, St1, depends solely on the current state St. In other words,
+we have
+PSt1sSts,Hth PSt1sSts,t0.1
+The possible values of Stform a set Scalled the state space of the
+chain.
+Generally, we will assume that the Markov chain is stationary. That is
+PSt1sSts PSt1sSts,t,t0.2Example of a Markov chain
+A particle that moves randomly within the space ZZ
+The state is the position of the particle St xt,yt
+The next state of the particle is determined by the following equation
+St1St dxt,dyt 3
+The displacements dxtanddytare sampled uniformly from the set
+0,1,1.
+Question
+Find the expression of transition probability PSt1sSts in the
+case of the random particle.Controlled Markov chain
+we will assume that we have some control over our Markov chain, allowing
+us to influence its dynamics.
+Definition
+Controlled Markov chain is a stochastic process St,Att0, where the
+next state St1depend only of the actual state Stand the action At, that
+is for all t0, we have
+PSt1sSts,Ata,Hth PSt1sSts,Ata
+4
+At The parameter we can manipulate to influence the dynamics of
+our Markov chain.
+LetAdenote all possible values of the control parameter.Example of a controlled Markov chain
+LetAt dxt,dyt.
+It is our responsibility to specify Atat each time step rather than
+having them sampled randomly.
+Transition model
+St1
+StAt,with probability 1 
+StU0,1,12,with probability .5
+Particle moves to intended position with probability 1 , and to a
+random position with probability .
+is a parameter that controls the degree of randomness in our
+process.
+The function specify the action to take at time step tis called the
+policy, denoted as SA.
+Question Find the expression of transition probability
+PSt1sSts,Ata in the case of the controlled particle.Controlled Markov chain with a goal
+We are not merely playing with our controlled Markov chain.
+Our objective is to guide the Markov chain to achieve a specific goal.
+Goal  optimizing a performance measure, denoted as G.
+New model a controlled Markov chain with goal
+St,Att0,G
+Finding the optimal actions that achieve the goal can be formulated
+as follows
+min
+G
+S0,A0,S1,A1,,AH1,SH
+Subject to AtSt,t 1,2, . . . , H
+St1P.St,At,t 1,2, . . . , H1
+S0s0.6Example of a controlled Markov chain with a goal
+Guide the particle to arrive to the point p x,y as quickly as
+possible.
+The performance measure Gassociates a trajectory with the number
+of steps
+G
+Traj  s0,s1,,sTTraj
+
+TTrajifTTrajMandsTTrajp
+,otherwise .
+7
+Question What is the exact optimal policy for our particle?Example of a controlled Markov chain with a goal
+It is a policy that moves the particle closer to the point p, that is
+
+St xt,yt
+
+sign xxt,sign yyt
+8
+Here, the function sign is defined as follows
+sign x 
+
+0,ifx 0,
+1,ifx0,
+1,ifx0.9Reward Hypothesis
+The overall trajectorys performance measure Gcan be decomposed
+into the sum of performance measures for each transition
+St,At,St1. This decomposition is expressed as
+G
+S0,A0,S1,A2, . . . , AH1,SH
+H1X
+t0RSt,At,St1 10
+The function RSASRis commonly referred to as the
+reward function.
+Consequently, we obtain a new formulation for the controlled Markov
+chain with the goal
+
+St,Att0,R
+Question What is the reward function in the case of our particle?Markov decision process Putting all concepts together
+Definition
+A Markov decision process MDP is a four tuple  S,A,T,R, where
+Sis the set of all possible states of the environment,
+Ais the set of all possible actions of the agent,
+TSAS0,1 is the transition model. That is
+PSt1sSts,Ata Ts,a,s
+RSASRis the reward function.
+Question Model the particle motion problem as an MDP.Solving an MDP
+Solving an MDP fundamentally equivalent to solving the following
+problem
+max
+EhH1X
+t0tRSt,At,St1i
+Subject to AtSt,t 1,2, . . . , H
+St1TSt,At, .,t 1,2, . . . , H1
+S0T0.11
+His referred to as the horizon.
+is known as the discount factor.
+IfHis finite, we can set  1 otherwise,  1.Action value function
+LetSA
+LetsSandaA.
+We define the value of the action ain state sunder the policy ,
+denoted as Qs,a, as the expected sum of rewards received by
+the agent when starting from s, agent performs action aand
+follows policy thereafter . That is
+Qs,a ET,hH1X
+t0tRSt,At,St1S0s,A0ai
+12
+QSARis known as Q-function under the policy .
+We define the optimal Q-function, denoted Q, as the maximum
+expected sum of rewards an agent can gain when starting from sand
+take the action a, that is
+Qs,a  max
+Qs,a 13Fundamental theorem of reinforcement learning
+Theorem
+LetM S,A,T,Rbe an MDP. If SandAare finite and Ris
+bounded, then
+There is at least one deterministic policy that solves the MDP M.
+Qsatisfy the following recursive relationship known as the Bellman
+equation
+Qs,a  EsTs,a,.
+Rs,a,s max
+aAQs,a
+14
+X
+sSTs,a,s
+Rs,a,s max
+aAQs,a
+The optimal policy is given as follows
+s  arg max
+aAQs,a,sS. 15Solving an MDP with Full Knowledge of Dynamics
+Solving an MDP estimate Q
+Qis the fixed point of the Bellman operator
+BFSA,R F SA,R
+f7 Bf 16
+where Bfs,a P
+sSTs,a,s Rs,a,s max aAfs,a.
+Bis a contraction  The sequence fkk0define by
+fk1Bfkwill converge to Qkaskgoes to infinity.
+We will refer to this algorithm as the value-iteration algorithm to find
+Q.Value-Iteration Algorithm to Find Q
+The value-iteration algorithm to find Qproceeds as follows
+Initialization Q0s,a  0 for all  s,a.
+At each iteration, update Qfor each  s,a as follows
+Qk1s,a X
+sSTs,a,s
+Rs,a,s max
+aAQks,a
+17Solving an MDP with Full Knowledge of Dynamics
+Question Find the optimal policy of the particle motion problem using
+value-iteration method.
+Consider a scenario where our particle is constrained to move within a
+limited space defined as space  0, . . . , 20   0, . . . , 20.Reinforcement learning solving an MDP without complete
+Knowledge of Dynamics
+Value-iteration method necessitates the knowledge of the transition
+model.
+Unfortunately, the transition model of the system is not known in
+general.
+All we have available is the ability to observe samples.
+The new challenge is to estimate Qbased only on samples.A basic learning algorithm
+Lets consider the following one-step problem
+The particle is at position 0 ,0.
+It is allowed to make one single transition to its neighboring positions
+one move.
+Objective Find the action that will take the particle to neighboring
+position p.
+Challenge The transition model is unknown, but we can observe
+samples of the particles movement.A basic algorithm for reinforcement learning
+We are in a single-decision problem.
+We have 9 possible actions.
+We can consider this reward function
+Ra 
+1 if the particle is at position p,
+1 else.18
+In this case
+Qa ERa 19A basic algorithm for reinforcement learning
+Letrtt1,2,...,nbe a sequence of rewards observed by the agent
+when performing action a.
+By the law of large numbers, we have
+Qa ERaQna 1
+nnX
+t1rt 20
+Question Assume we have obtained a new reward rn1for the action
+a, express Qn1a as a function of Qna and rn1.A basic algorithm for reinforcement learning
+Assuming we have obtained a new reward rn1and want to update
+the estimate of Qa, we have
+Qn1a 1
+n 1n1X
+t1rt
+1
+n 1rn11
+n 1nX
+t1rt
+1
+n 1rn1n
+n 11
+nnX
+t1rt
+1
+n 1rn1n
+n 1Qna
+Qna nrn1Qna,with n1
+n 1A basic algorithm for reinforcement learning
+So, the learning algorithm is as follows
+The agent starts with an arbitrarily estimated action value, e.g,
+Qa  0aA.
+At each time step t, the agent selects an action a, observes the
+reward r.
+Updates Qa as follows
+Qa Qa arQa 21Q-learning Extending the Basic Learning Algorithm to
+MDPs
+Single-Decision Sequential-Decision
+a s,a
+Qa Qs,a
+Qa ERa Qs,a E
+Rs,a max
+aAQs,a
+r rmax
+aAQs,a
+a s,a
+The analogy of the learning algorithm
+Qa Qa arQa 22
+is
+Qs,a Qs,a s,a
+rmax
+aAQs,aQs,a
+23Q-learning Extending the Basic Algorithm to MDPs
+The basic learning algorithm can be extended to MDPs as follows
+Initialize action values Qs,a  0s,a.
+At each time step t, observe state sand take action a.
+Observe the new state sand the gained reward r.
+Update action values as follows
+Qs,aQs,a s,a
+rmax
+aAQs,aQs,a
+This defines the Q-learning algorithm for MDPs.Convergence of Q-learning
+Theorem
+In a finite MDP, the Q-value function computed by Q-learning algorithm
+converges to the optimal Q-function Qw.p.1 if the following conditions
+are satisfied
+1The Q-values are stored in a lookup table,
+2Every state-action pair is visited an infinite number of times,
+3The learning rate satisfies the following conditions
+1tst,at0,1,
+2P
+ttst,at ,
+3P
+ttst,at2w.p.1,
+4s,a st,at, ts,a  0 ,
+4Var
+Rs,a,s
+.
+Question Find the optimal policy of the particle motion problem using
+Q-learning.
+Consider a scenario where our particle is constrained to move within a
+limited space defined as space  0, . . . , 20   0, . . . , 20.Limitations of Q-learning
+Limitations
+Q-learning uses a table to store Q-function.
+Memory complexity cardScardA
+High complexity if state and action spaces are huge.
+Lack of generalization Every state-action pair must be visited
+infinitely, often impractical.
+Solution
+Approximate Qusing a function approximation, e.g., an Artificial
+Neural Network fSARorfSRA.
+Challenge Construct an algorithm to find such that fis a good
+approximation of Q.Limitations of Q-learning
+Question Given the following fact
+Qs,a E
+Rs,a max
+aAQs,a
+24
+Suggest a loss function L such that farg min
+Lis a good approximation
+ofQ.Deep Q-network algorithm DQN
+D a set that contains the experiences of agent of the form
+es,a,s,r.
+k the model parameters at iteration k,
+fkfk.
+In order for fkto converge to Q, which is the fixed point of the optimal
+Bellman operator B, we have to proceed as follows
+fk1Bfkfk1Bfk 25
+k1 arg min
+E
+f Bfk2
+26
+k1arg min
+1
+ D X
+eDfs,a Bfks,a227
+k1arg min
+1
+ D X
+eD
+fs,armax
+aAfks,a2
+ z 
+Lk28
+Therefore, k1arg min
+LkQuestion Assuming that we use fSRA. What is the formula of the
+loss function Lk at iteration k.Policy gradient methods
+DQN does not directly estimate the policy instead, it approximates
+the optimal Q-function by a parameterized Q-function.
+In some cases, it would be better to estimate the optimal policy
+directly by utilizing a parameterized policy
+SA 29
+Methods that employ a parameterized policy are referred to as policy
+gradient methods.General Form of Policy Gradient Methods
+LetSA be a parameterized policy.
+LetJ be a performance measure that assesses the performance of
+.
+Objective Find such that J  max J.
+The stochastic gradient descent SGD method in this case is given
+by
+J 30General Form of Policy Gradient Methods
+Question Assume that the initial state is always s0. Suggest performance
+measure J such that arg max
+Lis a good approximation of .General Form of Policy Gradient Methods
+Without loss of generality, we can assume that we are in an episodic
+case and the the initial state is always s0
+In this case, we can take
+J vs0 EH1X
+t0RSt,At,St1S0s0
+31
+Theorem
+Letbe a differentiable policy parametrization, we have
+J E
+Qs,alogas
+32REINFORCE
+At time step t,J E
+Qs,alogas
+can be
+estimated as
+J QSt,AtlogAtSt 33
+Letrt,rt1,,rHa sequence of rewards observed when starting
+form St, taking the action Atand following thereafter. An
+estimate of QSt,At is
+Gtrtrt1rH 34
+A new estimate of J is
+J GtlogAtSt 35
+The REINFORCE algorithm uses the following update rule of 
+GtlogAtSt 36Limitation of REINFORCE and Actor-Critic Methods
+...

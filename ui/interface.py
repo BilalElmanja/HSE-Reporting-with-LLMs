@@ -31,7 +31,7 @@ class LLM_model(LLM):
 
     model: str = "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3"
     """model endpoint to use"""
-    together_api_key: str = "r8_Wy3th3wc1oX5iD5cGaQZiMXxkHMqjCz3AL1uU"
+    together_api_key: str = "r8_4bwvRHrNTm3qpgVHNjO3UdEeY69b8CT0tH7W4"
     """Together API key"""
     temperature: float = 0.01
     """What sampling temperature to use."""
@@ -73,23 +73,23 @@ class LLM_model(LLM):
         return response
     
     def predict(self, prompt):
-        os.environ["REPLICATE_API_TOKEN"] = "r8_dDtIiZGBrYfHpMQVlxphPk5HBDlM6XV4JUyi3"
+        os.environ["REPLICATE_API_TOKEN"] = "r8_4bwvRHrNTm3qpgVHNjO3UdEeY69b8CT0tH7W4"
         api = replicate.Client(api_token=os.environ["REPLICATE_API_TOKEN"])
-        output = api.run(
+        output = replicate.run(
             "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
-                input={
-                    "debug": False,
-                    "top_k": 5,
-                    "top_p": 1,
-                    "temperature": 0.01,
-                    "prompt": prompt,
-                    "system_prompt": "",
-                    "max_new_tokens": 1024,
-                    "min_new_tokens": -1
+            input={
+                "debug": False,
+                "top_k": 50,
+                "top_p": 1,
+                "prompt": "Can you write a poem about open source machine learning? Let's make it in the style of E. E. Cummings.",
+                "temperature": 0.5,
+                "system_prompt": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.",
+                "max_new_tokens": 500,
+                "min_new_tokens": -1
             }
             )
-       
-
+        print("\n \n \n")
+        print(output)
         return output
 
     @property

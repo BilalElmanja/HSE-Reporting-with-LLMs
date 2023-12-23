@@ -8,7 +8,7 @@ Including images in your README file can significantly enhance its readability a
 
 The Health, Safety, and Environment (HSE) LLM Report System is a conversational AI tool designed for use in industrial environments. It utilizes a Large Language Model (LLM) to interact with operators, gathering insights about work experience, safety, and health conditions. The system aims to generate detailed SST reports on working conditions by evaluating and responding to operators' feedback.
 
-![System Overview](./images/global_pipeline.png)
+![System Overview](./images/Untitled.png)
 
 ## Features
 

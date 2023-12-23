@@ -1,0 +1,1 @@
+{"lc": 1, "type": "constructor", "id": ["langchain", "schema", "document", "Document"], "kwargs": {"page_content": "Conversation ID: 20231223174614", "metadata": {"source": "./conversations\\conversation_20231223174614.txt"}}}

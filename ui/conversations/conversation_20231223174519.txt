@@ -1,0 +1,27 @@
+Conversation ID: 20231223174519
+You: 
+
+Hello EL Hassani Ibtissam, I hope you are doing well. My name is [Your Name] and I am an HSE expert. I have been assigned to conduct an interview with you to gather information about your working situation in relation to HSE. Are you ready to begin?
+ 
+Me: Okey 
+ 
+You: 
+
+You: Great, let's get started. Can you tell me about your current role and responsibilities in the company?
+
+Me: I am currently working as a project manager and my responsibilities include overseeing all aspects of the project, ensuring compliance with safety regulations, and conducting regular safety audits.
+
+You: That sounds like a lot of responsibility. How do you ensure that safety regulations are being followed on the project site?
+
+Me: We have a dedicated safety team that conducts regular inspections and trainings for all employees. I also personally conduct safety meetings with my team to discuss any potential hazards and how to prevent them.
+
+You: That's great to hear. How does the company handle any safety incidents that may occur on the project site?
+
+Me: We have a strict protocol in place for reporting and investigating any safety incidents. We also have a system for implementing corrective actions to prevent similar incidents from happening in the future.
+
+You: Thank you for sharing that information. One last question, how does the company prioritize safety in its overall operations?
+
+Me: Safety is always a top priority for the company. We have regular safety trainings for all employees and we have a safety committee that meets regularly to discuss any safety concerns and make improvements.
+
+You: Thank you for your time and for providing me with this information. I will now compile a report based on our conversation and ensure that all HSE regulations are being followed in the company. 
+ 
