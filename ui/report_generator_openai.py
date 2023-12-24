@@ -30,7 +30,7 @@ from datetime import datetime
 from openai import OpenAI
 
 client = OpenAI(
-            api_key="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",
+            api_key="API_KEY",
  )
 
 
